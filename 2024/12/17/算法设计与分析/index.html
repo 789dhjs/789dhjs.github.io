@@ -55,12 +55,12 @@
   configTitle: 'T',
   title: '算法设计与分析',
   postAI: '',
-  pageFillDescription: '算法设计与分析, 什么是算法, 定义, 特征, 有穷性, 确定性, 有效性, 输入, 输出, 时间复杂度, 三种表示法, 大O表示法, 二分查找, 数据结构, 链表, 递归, 定义, 满足条件, 递归遍历二叉树, 求解递归函数的时间复杂度, 分治, 定义, 递归与分治的关系, 用分治法解决的问题的几个特征, 排序, 希尔排序, 归并排序, 快速排序, 堆排序, 二叉搜索树, 查找前驱节点, 查找后继节点, 深度优先搜索, 图, 定义, 广度优先搜索, 并查集, 操作, 哈希, 除法哈希函数, 开放定址法, 线性探测法, 回溯法和分支限界法, 贪心, 动态规划, 题目格式算法设计与分析什么是算法定义算法是有规则地有限集合是为了解决特定问题而规定的一系列操作特征有穷性算法应该包含优先的操作步骤确定性算法的描述必须无歧义有效性又称可行性能够是可行的能够实现的输入算法必须要有个或以上的输入输出算法必须要有一个或以上的输出时间复杂度算法中所有语句的执行时间之和三种表示法大表示法渐近上界渐进上界当存在正常数和使得所有有即取中最高的那个阶数上界可以是渐进下界渐进下界当存在正常数和使得所有有取中最低的那个阶数上界可以是二分查找双指针法查找时间复杂度空间复杂度数据结构链表返回倒数第个元素双指针与都指向头节点先让向前走个长度这时与之间间隔了个长度当走到末尾时在之前个长度的位置这时刚刚好指向倒数第个元素返回链表中间节点双指针快慢指针指向头节点每次向前移动两格每次移动一格当走到末尾时刚刚好走到一半判断链表是否存在环如果有环会无限循环不会有的情况快慢指针总有时刻会相遇递归定义是程序直接或者间接的调用自己的一个方法满足条件若使递归函数有效需要满足两个条件基础部分包含语句的部分递归部分自己调用自己的部分递归遍历二叉树定义二叉树先序遍历二叉树中序遍历二叉树后序遍历二叉树求解递归函数的时间复杂度递归树等比数列求和分治定义将一个规模为的问题分解为个规模较小的子问题这些子问题互相独立且与原问题相同递归地解这些子问题然后将各子问题的解合并得到原问题的解递归与分治的关系由分治法产生的子问题往往是原问题的较小模式反复应用分治法可以使子问题与原问题类型一致且规模不断缩小最终使子问题缩小到很容易求解因此用递归求解用分治法解决的问题的几个特征问题的规模缩小到一定的程度可以容易地解决问题可以分解为若干个规模较小的相同问题利用原问题分解出的子问题的解可以合并为原问题的解问题所分解出的各个子问题是相互独立的即子问题之间不包含公共的子问题如果子问题不是相互独立的可以用动态规划法排序希尔归并快排堆希尔排序插入排序希尔排序基础版本将目前无序的序列的第一个挖出来每次指向有序的最后一个每次往后挪一个位置挪到最后前面空出来一个位置将挖出来的填回去希尔排序在插入排序的基础上给数据分组进行插入排序归并排序递归基础部分把左半边排好序把右半边排好序比较两个有序的数组长度为原来的一半当前元素小的放在一个新的数组里如果的元素全部放进去了没放完则将剩下的全部放进去同理将剩下的全部放进去快速排序如果比小就往后挪如果比大就往前挪堆排序二叉搜索树查找前驱节点节点的前驱节点使具有小于的最大关键字的节点如果节点有左子树的前驱节点就是他左子树中关键字最大的节点反之没有左子树那么的前驱节点可能从根节点查找到该节点经过的路劲中为路劲中最后一个遇到的关键字小于的节点如果没有这个节点那么无前驱节点左小右大找左子树有左子树所以找左子树中最大的关键字为无左子树且没有小于它的节点故无前驱节点无左子树从根开始查找找最后一个遇到的小于的节点为查找后继节点节点的后继节点使具有大于的最小关键字的节点如果节点有右子树的后继节点就是他左子树中关键字最大的节点反之没有右子树那么的前驱节点可能从根节点查找到该节点经过的路径中为路径中最后一个遇到的关键字大于的节点如果没有这个节点那么无前驱节点无右子树从根开始找遇到的最后一个大于的节点为无右子树从根开始找不存在大于的节点所以没有后继节点深度优先搜索图定义图由顶点节点的集和边的集组成每一条边是一个顶点对深度优先搜索遍历图的时间复杂度为广度优先搜索单源最短路径单一起点的最短路径问题贝尔曼福特算法解决一般情况下的单源最短路径迪杰斯特拉用的贪心主要和分支限界思想解决的问题解决非负加权图中从起点到其他节点中的最短路径问题并查集操作构建新的集合合并两个集合查找某元素所在的集合哈希除法哈希函数将关键字除以一个特定的整数所得的余数就是该关键字的哈希值开放定址法线性探测法冲突了就往后一个一个找空位置找到了就放回溯法和分支限界法回溯是深度优先算法的一种实现分支限界法是广度优先算法的实现贪心贪心不能在任何时候得到最优解背包问题就无法用贪心来解动态规划思想组合子问题的解以求解原问题适用情形最优子结构重叠子问题最长公共子序列题目格式单选填空判断简答算法设计作业',
+  pageFillDescription: '算法设计与分析, 什么是算法, 定义, 特征, 有穷性, 确定性, 有效性, 输入, 输出, 时间复杂度, 三种表示法, 大O表示法, 二分查找, 数据结构, 链表, 递归, 定义, 满足条件, 递归遍历二叉树, 求解递归函数的时间复杂度, 分治, 定义, 递归与分治的关系, 用分治法解决的问题的几个特征, 排序, 希尔排序, 归并排序, 快速排序, 堆排序, 二叉搜索树, 查找前驱节点, 查找后继节点, 深度优先搜索, 图, 定义, 广度优先搜索, 并查集, 操作, 哈希, 除法哈希函数, 开放定址法, 线性探测法, 回溯法和分支限界法, 贪心, 动态规划, 题目格式算法设计与分析什么是算法定义算法是有规则地有限集合是为了解决特定问题而规定的一系列操作特征有穷性算法应该包含优先的操作步骤确定性算法的描述必须无歧义有效性又称可行性能够是可行的能够实现的输入算法必须要有个或以上的输入输出算法必须要有一个或以上的输出时间复杂度算法中所有语句的执行时间之和三种表示法大表示法渐近上界渐进上界当存在正常数和使得所有有即取中最高的那个阶数上界可以是渐进下界渐进下界当存在正常数和使得所有有取中最低的那个阶数上界可以是二分查找双指针法时间复杂度空间复杂度数据结构链表返回倒数第个元素双指针与都指向头节点先让向前走个长度这时与之间间隔了个长度当走到末尾时在之前个长度的位置这时刚刚好指向倒数第个元素返回链表中间节点双指针快慢指针指向头节点每次向前移动两格每次移动一格当走到末尾时刚刚好走到一半判断链表是否存在环如果有环会无限循环不会有的情况快慢指针总有时刻会相遇递归定义是程序直接或者间接的调用自己的一个方法满足条件若使递归函数有效需要满足两个条件基础部分包含语句的部分递归部分自己调用自己的部分递归遍历二叉树定义二叉树先序遍历二叉树中序遍历二叉树后序遍历二叉树求解递归函数的时间复杂度递归树等比数列求和分治定义将一个规模为的问题分解为个规模较小的子问题这些子问题互相独立且与原问题相同递归地解这些子问题然后将各子问题的解合并得到原问题的解递归与分治的关系由分治法产生的子问题往往是原问题的较小模式反复应用分治法可以使子问题与原问题类型一致且规模不断缩小最终使子问题缩小到很容易求解因此用递归求解用分治法解决的问题的几个特征问题的规模缩小到一定的程度可以容易地解决问题可以分解为若干个规模较小的相同问题利用原问题分解出的子问题的解可以合并为原问题的解问题所分解出的各个子问题是相互独立的即子问题之间不包含公共的子问题如果子问题不是相互独立的可以用动态规划法排序希尔归并快排堆希尔排序插入排序希尔排序基础版本将目前无序的序列的第一个挖出来每次指向有序的最后一个每次往后挪一个位置挪到最后前面空出来一个位置将挖出来的填回去希尔排序在插入排序的基础上给数据分组进行插入排序归并排序递归基础部分把左半边排好序把右半边排好序比较两个有序的数组长度为原来的一半当前元素小的放在一个新的数组里如果的元素全部放进去了没放完则将剩下的全部放进去同理将剩下的全部放进去快速排序如果比小就往后挪如果比大就往前挪堆排序二叉搜索树查找前驱节点节点的前驱节点使具有小于的最大关键字的节点如果节点有左子树的前驱节点就是他左子树中关键字最大的节点反之没有左子树那么的前驱节点可能从根节点查找到该节点经过的路劲中为路劲中最后一个遇到的关键字小于的节点如果没有这个节点那么无前驱节点左小右大找左子树有左子树所以找左子树中最大的关键字为无左子树且没有小于它的节点故无前驱节点无左子树从根开始查找找最后一个遇到的小于的节点为查找后继节点节点的后继节点使具有大于的最小关键字的节点如果节点有右子树的后继节点就是他左子树中关键字最大的节点反之没有右子树那么的前驱节点可能从根节点查找到该节点经过的路径中为路径中最后一个遇到的关键字大于的节点如果没有这个节点那么无前驱节点无右子树从根开始找遇到的最后一个大于的节点为无右子树从根开始找不存在大于的节点所以没有后继节点深度优先搜索图定义图由顶点节点的集和边的集组成每一条边是一个顶点对深度优先搜索遍历图的时间复杂度为广度优先搜索单源最短路径单一起点的最短路径问题贝尔曼福特算法解决一般情况下的单源最短路径迪杰斯特拉用的贪心主要和分支限界思想解决的问题解决非负加权图中从起点到其他节点中的最短路径问题并查集操作构建新的集合合并两个集合查找某元素所在的集合哈希除法哈希函数将关键字除以一个特定的整数所得的余数就是该关键字的哈希值开放定址法线性探测法冲突了就往后一个一个找空位置找到了就放回溯法和分支限界法回溯是深度优先算法的一种实现分支限界法是广度优先算法的实现贪心贪心不能在任何时候得到最优解背包问题就无法用贪心来解动态规划思想组合子问题的解以求解原问题适用情形最优子结构重叠子问题最长公共子序列题目格式单选填空判断简答算法设计作业',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-12-17 19:42:32',
+  postUpdate: '2024-12-17 19:50:14',
   postMainColor: '',
 }</script><noscript><style type="text/css">
   #nav {
@@ -203,7 +203,7 @@ setTimeout(function(){preloader.endLoading();},10000)
 if (true) {
   document.addEventListener('pjax:send', () => { preloader.initLoading() })
   document.addEventListener('pjax:complete', () => { preloader.endLoading() })
-}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">T</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/JAVA/" style="font-size: 1.05rem;">JAVA<sup>1</sup></a><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Java基础<sup>1</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">操作系统<sup>1</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" style="font-size: 1.05rem;">算法设计与分析<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>算法设计与分析</span></a></span></div></div><h1 class="post-title" itemprop="name headline">算法设计与分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-12-17T11:40:00.000Z" title="发表于 2024-12-17 19:40:00">2024-12-17</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-12-17T11:42:32.083Z" title="更新于 2024-12-17 19:42:32">2024-12-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="算法设计与分析"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为武汉"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>武汉</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://789dhjs.github.io/2024/12/17/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><header><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" tabindex="-1" itemprop="url">算法设计与分析</a><h1 id="CrawlerTitle" itemprop="name headline">算法设计与分析</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Tian he feng</span><time itemprop="dateCreated datePublished" datetime="2024-12-17T11:40:00.000Z" title="发表于 2024-12-17 19:40:00">2024-12-17</time><time itemprop="dateCreated datePublished" datetime="2024-12-17T11:42:32.083Z" title="更新于 2024-12-17 19:42:32">2024-12-17</time></header><h1>算法设计与分析</h1>
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">T</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/JAVA/" style="font-size: 1.05rem;">JAVA<sup>1</sup></a><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Java基础<sup>1</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">操作系统<sup>1</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" style="font-size: 1.05rem;">算法设计与分析<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>算法设计与分析</span></a></span></div></div><h1 class="post-title" itemprop="name headline">算法设计与分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-12-17T11:40:00.000Z" title="发表于 2024-12-17 19:40:00">2024-12-17</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-12-17T11:50:14.351Z" title="更新于 2024-12-17 19:50:14">2024-12-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="算法设计与分析"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为武汉"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>武汉</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://789dhjs.github.io/2024/12/17/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><header><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" tabindex="-1" itemprop="url">算法设计与分析</a><h1 id="CrawlerTitle" itemprop="name headline">算法设计与分析</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Tian he feng</span><time itemprop="dateCreated datePublished" datetime="2024-12-17T11:40:00.000Z" title="发表于 2024-12-17 19:40:00">2024-12-17</time><time itemprop="dateCreated datePublished" datetime="2024-12-17T11:50:14.351Z" title="更新于 2024-12-17 19:50:14">2024-12-17</time></header><h1>算法设计与分析</h1>
 <h2 id="什么是算法">什么是算法</h2>
 <h3 id="定义">定义</h3>
 <p>算法是有规则地有限集合，是为了解决特定问题而规定的一系列操作</p>
@@ -233,127 +233,7 @@ if (true) {
 <h3 id="二分查找">二分查找</h3>
 <p>双指针法</p>
 <p><strong>L = 0,R = len(A)-1,M = (L+R)/2</strong></p>
-<p><strong>查找 7</strong></p>
-<table>
-<thead>
-<tr>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>4</td>
-<td>7</td>
-<td>8</td>
-<td>11</td>
-<td>12</td>
-<td>14</td>
-<td>17</td>
-</tr>
-</tbody>
-</table>
-<p>​	$\uparrow$									$\uparrow$												$\uparrow$</p>
-<p>​	L									M												R</p>
-<table>
-<thead>
-<tr>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>4</td>
-<td>7</td>
-<td>8</td>
-<td>11</td>
-<td>12</td>
-<td>14</td>
-<td>17</td>
-</tr>
-</tbody>
-</table>
-<p>​	$\uparrow$		$\uparrow$				    $\uparrow$</p>
-<p>​	L		M				  R</p>
-<table>
-<thead>
-<tr>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>4</td>
-<td>7</td>
-<td>8</td>
-<td>11</td>
-<td>12</td>
-<td>14</td>
-<td>17</td>
-</tr>
-</tbody>
-</table>
-<p>​					$\uparrow$ $\uparrow$ 		$\uparrow$</p>
-<p>​					L M		R</p>
-<table>
-<thead>
-<tr>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>3</td>
-<td>4</td>
-<td>7</td>
-<td>8</td>
-<td>11</td>
-<td>12</td>
-<td>14</td>
-<td>17</td>
-</tr>
-</tbody>
-</table>
-<p>​								$\uparrow$ $\uparrow$ $\uparrow$</p>
-<p>​								L M R</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-17%20194845.png" alt></p>
 <p>时间复杂度 log(n)</p>
 <p>空间复杂度o(1)</p>
 <h2 id="数据结构">数据结构</h2>
