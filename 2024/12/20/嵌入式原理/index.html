@@ -1,0 +1,809 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>嵌入式原理 | T</title><meta name="keywords" content="嵌入式"><meta name="author" content="Tian he feng,949616534@qq.com"><meta name="copyright" content="Tian he feng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="嵌入式原理"><meta name="application-name" content="嵌入式原理"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="嵌入式原理"><meta property="og:url" content="http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/index.html"><meta property="og:site_name" content="T"><meta property="og:description" content="嵌入式 振荡周期、状态周期、机器周期、指令周期的关系  什么是嵌入式 关键字: 受限 受限的设备 资源受限 成本受限 性能受限 嵌入式系统有什么 CPU 运算器，控制器 内存 寄存器 1.累加器A 也叫ACC。用作累加（加减乘除都可以变化为加法） 2.寄存器B 作为执行乘法和除法操作而设置的 3.特"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://789dhjs.github.io/img/default_cover.jpg"><meta property="article:author" content="Tian he feng"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://789dhjs.github.io/img/default_cover.jpg"><meta name="description" content="嵌入式 振荡周期、状态周期、机器周期、指令周期的关系  什么是嵌入式 关键字: 受限 受限的设备 资源受限 成本受限 性能受限 嵌入式系统有什么 CPU 运算器，控制器 内存 寄存器 1.累加器A 也叫ACC。用作累加（加减乘除都可以变化为加法） 2.寄存器B 作为执行乘法和除法操作而设置的 3.特"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '100040001853',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Tian he feng","link":"链接: ","source":"来源: T","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'T',
+  title: '嵌入式原理',
+  postAI: '',
+  pageFillDescription: '嵌入式, 振荡周期、状态周期、机器周期、指令周期的关系, 什么是嵌入式, 嵌入式系统有什么, CPU, 内存, 寄存器, 1.累加器A, 2.寄存器B, 3.特殊寄存器（如P1.0p0.1等）, 4.PSW(*), 5.程序存储器, IO, 单片机的引脚, 指令系统, 伪指令, 寻址方式, 运算指令, 程序设计, 延时程序, 中断服务, 中断请求, 中断源, 与中断相关的寄存器, 中断允许控制寄存器IE, TCON, IP, 定时器/计数器, TMOD, 串口, 单工半双工全双工的区别, 系统扩展与接口技术嵌入式振荡周期状态周期机器周期指令周期的关系什么是嵌入式关键字受限受限的设备资源受限成本受限性能受限嵌入式系统有什么运算器控制器内存寄存器累加器也叫用作累加加减乘除都可以变化为加法寄存器作为执行乘法和除法操作而设置的特殊寄存器如等进位标志位辅助进位标志位当低四位向高四位进位或借位时置为标志位用于选择工作寄存区溢出标志位溢出则置位该位是保留位奇偶标志位程序状态寄存器的格式注意考试中遇到要能分辨工作寄存区选择控制位和位的定义工作寄存区程序存储器用于存储下一条指令地址和中断地址单片机的引脚只有四个口是三态口都是双向口既可以配置为输入也可以配置为输出引脚对应功能引脚第二功能定时器计数器外部输入外部中断外部中断是一个地址为为以此类推高电位低电位大概以上为高电位一下为低电位中间为悬空态如果想要解决悬空态要接上拉电阻和下拉电阻给一个简答题或程序题解读程序在干什么首先说明是怎么连接的线不要漏这句话然后说明这个按钮或者灯实现了什么功能指令系统伪指令文件不支持伪指令总是会出现在每段源程序或者数据块的开始表示程序的起始地址定义字节定义字实例将从开始将字节存入内存连续单元中指定起始地址因为要从开始存储所以起始地址设置为存储器地址内容的码的码的码的码如果改为字存储相当于汇编结束注意符号为取地址符会有两道题让判断其中的值为读取外部存储器将内数值为地址的外部数据存储器的内容送给读取程序存储器的值这句指令是将和两个寄存器的值相加之和作为程序存储器的数据地址将地址的内容给寻址方式寄存器寻址直接寻址立即寻址寄存器间接寻址基址加变址寄存器间接寻址位寻址方式相对寻址方式运算指令一般加法指令带进位的加法指令以上两个指令均会影响增量指令增量指令不会影响标志位减法指令会影响标志位乘法指令会影响标志当乘积大于时置否则清乘法指令总是使清除法指令程序设计目前最常用的编码是码十进制转化为码将每一位十进制用四位码表示即延时程序如果使用晶振一个机器周期就是微秒考试会考变化数值要会计算为双指令即两个机器周期的指令个机器周期个机器周期中断服务中断请求中断源分类中断源名称中断申请标志触发方式外部中断外部中断低电平外部中断外部中断低电平内部中断内部中断定时器溢出内部中断内部中断定时器溢出内部中断串口中断串口完成工作与中断相关的寄存器中断允许控制寄存器有定义的位地址中断允许的总控制位外部中断允许控制位外部中断允许控制位定时器允许控制位定时器允许控制位串口中断允许位注意先开总中断再开分中断或者上述两种写法都是对的与中断有关的控制位外部中断请求标志位外部中断请求标志位外部中断请求方式控制位为时低电平有效外部中断请求方式控制位计数器溢出标志位当发生溢出时置为转到中断服务计数器溢出标志位注意中断子程序的两种写法或者中断优先级控制寄存器串口最高最低注意只有有中断源没有所以选择题看到直接排除定时器计数器工作模式寄存器四种工作模式工作模式模式高位加上中的低位构成位定时器模式位定时器模式可自动重装初值的位定时器模式对于被分为两个为定时器对于则停止计数串口单工半双工全双工的区别单工数据只能单向传输发送方只能发送消息接收方只能接收消息广播电台半双工数据可以在两个方向上进行传输但不能同时进行某一时刻只能单向传输对讲机全双工数据可以在两个方向上同事进行传输电话系统扩展与接口技术常被用作显示屏上用于读取数据适用于传感器用于处理声音',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-20 20:39:42',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">T</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/JAVA/" style="font-size: 1.05rem;">JAVA<sup>2</sup></a><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 1.05rem;">Java基础<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 1.05rem;">Redis<sup>1</sup></a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 1.05rem;">嵌入式<sup>1</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.05rem;">操作系统<sup>1</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" style="font-size: 1.05rem;">算法设计与分析<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.05rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>嵌入式</span></a></span></div></div><h1 class="post-title" itemprop="name headline">嵌入式原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-12-20T12:36:49.000Z" title="发表于 2024-12-20 20:36:49">2024-12-20</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-12-20T12:39:42.507Z" title="更新于 2024-12-20 20:39:42">2024-12-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">1.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="嵌入式原理"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为武汉"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>武汉</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/"><header><a class="post-meta-categories" href="/categories/%E5%A4%8D%E4%B9%A0/" itemprop="url">复习</a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" tabindex="-1" itemprop="url">嵌入式</a><h1 id="CrawlerTitle" itemprop="name headline">嵌入式原理</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Tian he feng</span><time itemprop="dateCreated datePublished" datetime="2024-12-20T12:36:49.000Z" title="发表于 2024-12-20 20:36:49">2024-12-20</time><time itemprop="dateCreated datePublished" datetime="2024-12-20T12:39:42.507Z" title="更新于 2024-12-20 20:39:42">2024-12-20</time></header><h1>嵌入式</h1>
+<h2 id="振荡周期、状态周期、机器周期、指令周期的关系">振荡周期、状态周期、机器周期、指令周期的关系</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/%E5%B5%8C%E5%85%A5%E5%BC%8F.png" alt></p>
+<h2 id="什么是嵌入式">什么是嵌入式</h2>
+<p>关键字: <strong>受限</strong><br>
+受限的设备 资源受限 成本受限 性能受限</p>
+<h2 id="嵌入式系统有什么">嵌入式系统有什么</h2>
+<h3 id="CPU">CPU</h3>
+<p>运算器，控制器</p>
+<h3 id="内存">内存</h3>
+<h4 id="寄存器">寄存器</h4>
+<h5 id="1-累加器A">1.累加器A</h5>
+<p>也叫ACC。用作累加（加减乘除都可以变化为加法）</p>
+<h5 id="2-寄存器B">2.寄存器B</h5>
+<p>作为执行乘法和除法操作而设置的</p>
+<h5 id="3-特殊寄存器（如P1-0-p0-1等）">3.特殊寄存器（如P1.0,p0.1等）</h5>
+<h5 id="4-PSW">4.PSW(*)</h5>
+<ul>
+<li>CY（PSW.7）：进位标志位</li>
+<li>AC（PSW.6）：辅助进位标志位，当<strong>低四位向高四位进位或借位</strong>时，AC置为1</li>
+<li>F0标志位</li>
+<li>RS1、RS0：用于选择工作寄存区</li>
+<li>OV溢出标志位，溢出则置0</li>
+<li>PSW.1位：该位是保留位</li>
+<li>P：奇偶标志位</li>
+</ul>
+<p>程序状态寄存器PSW的格式</p>
+<p><strong>注意</strong>:(ODO).5 =&gt;D5 考试中遇到要能分辨</p>
+<p>D7&lt;-----------------------------------------------------D0</p>
+<table>
+<thead>
+<tr>
+<th>D7</th>
+<th>D6</th>
+<th>D5</th>
+<th>D4</th>
+<th>D3</th>
+<th>D2</th>
+<th>D1</th>
+<th>D0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CY</td>
+<td>AC</td>
+<td>F0</td>
+<td>RS1</td>
+<td>RS0</td>
+<td>OV</td>
+<td>-------</td>
+<td>P</td>
+</tr>
+</tbody>
+</table>
+<p>工作寄存区选择控制位1和位0的定义</p>
+<table>
+<thead>
+<tr>
+<th>RS1</th>
+<th>RS0</th>
+<th>工作寄存区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h5 id="5-程序存储器">5.程序存储器</h5>
+<p>用于存储下一条指令地址和中断地址</p>
+<h3 id="IO">IO</h3>
+<h4 id="单片机的引脚">单片机的引脚</h4>
+<p>8051只有四个口</p>
+<p>P0,P1,P2,P3</p>
+<p><strong>P0是三态口!!!</strong></p>
+<p><strong>P0、P1、P2、P3都是双向口：既可以配置为输入也可以配置为输出</strong></p>
+<p>8051引脚对应功能</p>
+<table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>第二功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1.0</td>
+<td>T2(定时器、计数器2外部输入)</td>
+</tr>
+<tr>
+<td>P1.1</td>
+<td>T2EX</td>
+</tr>
+<tr>
+<td>P1.5</td>
+<td>MOSI</td>
+</tr>
+<tr>
+<td>P1.6</td>
+<td>MISO</td>
+</tr>
+<tr>
+<td>P1.7</td>
+<td>SCK</td>
+</tr>
+<tr>
+<td>P3.0</td>
+<td>RXD</td>
+</tr>
+<tr>
+<td>P3.1</td>
+<td>TXD</td>
+</tr>
+<tr>
+<td>P3.2</td>
+<td>$\overline{INT0}$(外部中断0)</td>
+</tr>
+<tr>
+<td>P3.3</td>
+<td>$\overline{INT1}$(外部中断1)</td>
+</tr>
+<tr>
+<td>P3.4</td>
+<td>T0</td>
+</tr>
+<tr>
+<td>P3.5</td>
+<td>T1</td>
+</tr>
+<tr>
+<td>P3.6</td>
+<td>$\overline{WR}$</td>
+</tr>
+<tr>
+<td>P3.7</td>
+<td>$\overline{RD}$</td>
+</tr>
+</tbody>
+</table>
+<p>P1.0是一个地址为90h</p>
+<p>P1.1为91h…以此类推</p>
+<p><strong>高电位/低电位</strong>：大概4.5v以上为高电位，4.5v一下为低电位、中间为悬空态，如果想要解决悬空态要接上拉电阻和下拉电阻</p>
+<p>给一个简答题或程序题解读程序在干什么：首先说明<strong>是怎么连接的线</strong>(不要漏这句话)，然后说明这个按钮或者灯实现了什么功能</p>
+<h2 id="指令系统">指令系统</h2>
+<h3 id="伪指令">伪指令</h3>
+<p>.HEX文件不支持伪指令</p>
+<p><strong><a href="http://1.ORG">1.ORG</a>：总是会出现在每段源程序或者数据块的开始，表示程序的起始地址</strong></p>
+<p><strong>2.DB：定义字节</strong></p>
+<p><strong>3.DW：定义字</strong></p>
+<p>实例：</p>
+<p>将54H,10H,30H,72H,‘TYUT’，从200H开始将字节存入内存连续单元中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#指定起始地址因为要从200H开始存储所以起始地址设置为200H</span><br><span class="line">ORG 200H</span><br><span class="line">DATA1:DB 54H,10H,30H,72H</span><br><span class="line">DATA2:DB &#x27;TYUT&#x27;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>存储器地址</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200H</td>
+<td>54H</td>
+</tr>
+<tr>
+<td>201H</td>
+<td>10H</td>
+</tr>
+<tr>
+<td>202H</td>
+<td>30H</td>
+</tr>
+<tr>
+<td>203H</td>
+<td>72H</td>
+</tr>
+<tr>
+<td>204H</td>
+<td>54H('T’的ASCII码)</td>
+</tr>
+<tr>
+<td>205H</td>
+<td>59H('Y’的ASCII码)</td>
+</tr>
+<tr>
+<td>206H</td>
+<td>55H('U’的ASCII码)</td>
+</tr>
+<tr>
+<td>207H</td>
+<td>54H('T’的ASCII码)</td>
+</tr>
+</tbody>
+</table>
+<p>如果改为字存储</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ORG 200H</span><br><span class="line">DATA1: DW 5410H,3072H,&#x27;TYUT&#x27;</span><br></pre></td></tr></table></figure>
+<p><strong>4.EQU：相当于’=’</strong></p>
+<p><strong>5.END：汇编结束</strong></p>
+<p>注意：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MOV ，@A   #‘@’符号为取地址符 会有两道题让判断其中的值</span><br><span class="line"></span><br><span class="line">MOVX A,@DPTR  #MOVX为读取外部存储器PC,DPTR</span><br><span class="line">#将DPTR内数值为地址的外部数据存储器的内容送给A</span><br><span class="line"></span><br><span class="line">MOVC A,@A+PC  </span><br><span class="line">#MOVC读取程序存储器的值,这句指令是将A和DPTR两个寄存器的值相加之和作为程序存储器的数据地址，将地址的内容给A</span><br></pre></td></tr></table></figure>
+<h3 id="寻址方式">寻址方式</h3>
+<p>1.寄存器寻址</p>
+<p>2.直接寻址</p>
+<p>3.立即寻址</p>
+<p>4.寄存器间接寻址</p>
+<p>4.基址加变址寄存器间接寻址</p>
+<p>5.位寻址方式</p>
+<p>6.相对寻址方式</p>
+<h3 id="运算指令">运算指令</h3>
+<p>1.一般加法指令：ADD</p>
+<p>2.带进位的加法指令：ADDC</p>
+<p>以上两个指令均会影响AC，CY，OV，P</p>
+<p>3.增量指令：INC	增量指令不会影响标志位</p>
+<p>5.减法指令：SUBB	会影响标志位AC，CY，OV，P</p>
+<p>6.乘法指令：MUL	会影响OV标志，当乘积大于0FFH时，OV置1，否则清0；乘法指令总是使CY清0</p>
+<p>7.除法指令：DIV</p>
+<h2 id="程序设计">程序设计</h2>
+<p>目前最常用的编码是ASCII码</p>
+<p>十进制转化为BCD码</p>
+<p>162=&gt;BCD 将每一位十进制用四位BCD码表示即：0001  0110  0010</p>
+<h3 id="延时程序">延时程序</h3>
+<p>如果使用12MHz晶振，一个机器周期就是1微秒</p>
+<p>考试会考，变化数值要会计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DELAY: MOV R5, #100</span><br><span class="line">DEL0: MOV R6, #200</span><br><span class="line">DEL1: MOV R7, #248</span><br><span class="line"># DJNZ为双指令，即两个机器周期的指令</span><br><span class="line">DEL2: DJNZ R7, DEL2	;248*2+1=497个机器周期</span><br><span class="line">      DJNZ R6, DEL1 ;(248*2+1+2)*200+1=99801个机器周期</span><br><span class="line">      DJNZ R5, DEL0</span><br><span class="line">      RET</span><br></pre></td></tr></table></figure>
+<h2 id="中断服务">中断服务</h2>
+<h3 id="中断请求">中断请求</h3>
+<h4 id="中断源">中断源</h4>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>中断源名称</th>
+<th>中断申请标志</th>
+<th>触发方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部中断</td>
+<td>外部中断1</td>
+<td>IE0</td>
+<td>$\overline{INT0}$(P3.2)低电平</td>
+</tr>
+<tr>
+<td>外部中断</td>
+<td>外部中断0</td>
+<td>IE1</td>
+<td>$\overline{INT1}$(P3.3)低电平</td>
+</tr>
+<tr>
+<td>内部中断</td>
+<td>内部中断0</td>
+<td>IF0</td>
+<td>T0定时器溢出</td>
+</tr>
+<tr>
+<td>内部中断</td>
+<td>内部中断1</td>
+<td>IF1</td>
+<td>T1定时器溢出</td>
+</tr>
+<tr>
+<td>内部中断</td>
+<td>串口中断</td>
+<td>RI、TI</td>
+<td>串口完成工作</td>
+</tr>
+</tbody>
+</table>
+<h4 id="与中断相关的寄存器">与中断相关的寄存器</h4>
+<h5 id="中断允许控制寄存器IE">中断允许控制寄存器IE</h5>
+<p>有定义的位地址：</p>
+<p>EA：中断允许的总控制位</p>
+<p>EX0：外部中断0允许控制位</p>
+<p>EX1：外部中断1允许控制位</p>
+<p>ET0：定时器0允许控制位</p>
+<p>ET1：定时器1允许控制位</p>
+<p>ES：串口中断允许位</p>
+<p>注意：先开总中断EA再开分中断ET0或者ET1</p>
+<p><strong>SETB EA</strong>		<strong>EA = 1</strong></p>
+<p><strong>SETB ET0</strong>		<strong>ET0 = 1</strong></p>
+<p>上述两种写法都是对的</p>
+<h5 id="TCON">TCON</h5>
+<p>与中断有关的控制位：</p>
+<p>IE0：外部中断0请求标志位</p>
+<p>IE1：外部中断1请求标志位</p>
+<p>IT0：外部中断0请求方式控制位，为0时低电平有效</p>
+<p>IT1：外部中断1请求方式控制位</p>
+<p>TF0：计数器0溢出标志位，当发生溢出时置为1，转到中断服务</p>
+<p>TF1：计数器1溢出标志位</p>
+<p>注意：中断子程序的两种写法</p>
+<p>interrupt{</p>
+<p>}</p>
+<p>或者</p>
+<p>if(IF0 == 1){</p>
+<p>}</p>
+<h5 id="IP">IP</h5>
+<p>中断优先级控制寄存器</p>
+<p>$\overline{INT0}$、T0、$\overline{INT1}$、T1、串口</p>
+<p>(最高)&lt;---------------------------(最低)</p>
+<p>注意：只有8052有T2中断源，8051没有，所以选择题看到T2直接排除</p>
+<h2 id="定时器-计数器">定时器/计数器</h2>
+<h3 id="TMOD">TMOD</h3>
+<p>工作模式寄存器</p>
+<p>四种工作模式</p>
+<table>
+<thead>
+<tr>
+<th>M1</th>
+<th>M0</th>
+<th>工作模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>模式0：TH高8位加上TL中的低5位构成13位定时器</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>模式1：16位定时器</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>模式2：可自动重装初值的8位定时器</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>模式3：对于T0，被分为两个8为定时器，对于T1则停止计数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="串口">串口</h2>
+<h3 id="单工，半双工，全双工的区别">单工，半双工，全双工的区别</h3>
+<p>单工：数据只能单向传输，发送方只能发送消息，接收方只能接收消息（广播电台）</p>
+<p>半双工：数据可以在两个方向上进行传输，但不能同时进行，某一时刻只能单向传输（对讲机）</p>
+<p>全双工：数据可以在两个方向上同事进行传输（电话）</p>
+<h2 id="系统扩展与接口技术">系统扩展与接口技术</h2>
+<p>SPI：常被用作显示屏上</p>
+<p>I$^2$C：用于读取数据，适用于传感器</p>
+<p>I$^2$S：用于处理声音</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/Cache_-47f30b4c23bc76c9.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/Cache_-47f30b4c23bc76c9.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Tian he feng</div><div class="post-copyright__author_desc">生活明朗，万物可爱</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/')">嵌入式原理</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=嵌入式原理&amp;url=http://789dhjs.github.io/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/&amp;pic=/img/default_cover.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://789dhjs.github.io" target="_blank">T</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>嵌入式<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/12/20/redis%E5%9F%BA%E7%A1%80/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">redis基础</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/Cache_-47f30b4c23bc76c9.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">Tian he feng</h1><div class="author-info__desc">生活明朗，万物可爱</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/789dhjs/" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/503571173/" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://web-tlias4475431.oss-cn-hangzhou.aliyuncs.com/Hexo/%E4%BA%8C%E7%BB%B4%E7%A0%81.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">嵌入式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%AF%E8%8D%A1%E5%91%A8%E6%9C%9F%E3%80%81%E7%8A%B6%E6%80%81%E5%91%A8%E6%9C%9F%E3%80%81%E6%9C%BA%E5%99%A8%E5%91%A8%E6%9C%9F%E3%80%81%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">振荡周期、状态周期、机器周期、指令周期的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%B5%8C%E5%85%A5%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是嵌入式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9C%89%E4%BB%80%E4%B9%88"><span class="toc-number">1.3.</span> <span class="toc-text">嵌入式系统有什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU"><span class="toc-number">1.3.1.</span> <span class="toc-text">CPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98"><span class="toc-number">1.3.2.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E7%B4%AF%E5%8A%A0%E5%99%A8A"><span class="toc-number">1.3.2.1.1.</span> <span class="toc-text">1.累加器A</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AF%84%E5%AD%98%E5%99%A8B"><span class="toc-number">1.3.2.1.2.</span> <span class="toc-text">2.寄存器B</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%89%B9%E6%AE%8A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%A6%82P1-0-p0-1%E7%AD%89%EF%BC%89"><span class="toc-number">1.3.2.1.3.</span> <span class="toc-text">3.特殊寄存器（如P1.0,p0.1等）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-PSW"><span class="toc-number">1.3.2.1.4.</span> <span class="toc-text">4.PSW(*)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E7%A8%8B%E5%BA%8F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.3.2.1.5.</span> <span class="toc-text">5.程序存储器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO"><span class="toc-number">1.3.3.</span> <span class="toc-text">IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E5%BC%95%E8%84%9A"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">单片机的引脚</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.</span> <span class="toc-text">指令系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.1.</span> <span class="toc-text">伪指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.2.</span> <span class="toc-text">寻址方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.3.</span> <span class="toc-text">运算指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E6%97%B6%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">延时程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.6.</span> <span class="toc-text">中断服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82"><span class="toc-number">1.6.1.</span> <span class="toc-text">中断请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E6%BA%90"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">中断源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8E%E4%B8%AD%E6%96%AD%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">与中断相关的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%85%81%E8%AE%B8%E6%8E%A7%E5%88%B6%E5%AF%84%E5%AD%98%E5%99%A8IE"><span class="toc-number">1.6.1.2.1.</span> <span class="toc-text">中断允许控制寄存器IE</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TCON"><span class="toc-number">1.6.1.2.2.</span> <span class="toc-text">TCON</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IP"><span class="toc-number">1.6.1.2.3.</span> <span class="toc-text">IP</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8-%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">1.7.</span> <span class="toc-text">定时器&#x2F;计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TMOD"><span class="toc-number">1.7.1.</span> <span class="toc-text">TMOD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3"><span class="toc-number">1.8.</span> <span class="toc-text">串口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%B7%A5%EF%BC%8C%E5%8D%8A%E5%8F%8C%E5%B7%A5%EF%BC%8C%E5%85%A8%E5%8F%8C%E5%B7%A5%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.8.1.</span> <span class="toc-text">单工，半双工，全双工的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF"><span class="toc-number">1.9.</span> <span class="toc-text">系统扩展与接口技术</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/20/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86/" title="嵌入式原理">嵌入式原理</a><time datetime="2024-12-20T12:36:49.000Z" title="发表于 2024-12-20 20:36:49">2024-12-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/20/redis%E5%9F%BA%E7%A1%80/" title="redis基础">redis基础</a><time datetime="2024-12-20T11:08:55.000Z" title="发表于 2024-12-20 19:08:55">2024-12-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" title="算法设计与分析">算法设计与分析</a><time datetime="2024-12-17T11:40:00.000Z" title="发表于 2024-12-17 19:40:00">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">设计模式</a><time datetime="2024-12-16T16:16:07.000Z" title="发表于 2024-12-17 00:16:07">2024-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/16/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%B8%B8%E8%AF%86/" title="基础概念与常识">基础概念与常识</a><time datetime="2024-12-16T11:08:34.000Z" title="发表于 2024-12-16 19:08:34">2024-12-16</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="workboard"><div id="runtimeTextTip"></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 By <a class="footer-bar-link" href="/" title="Tian he feng" target="_blank">Tian he feng</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div><!--script(src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.2.4/mermaid.min.js")--></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://ztianhf.netlify.app/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/JAVA/" style="font-size: 0.88rem;">JAVA<sup>2</sup></a><a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 0.88rem;">Java基础<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 0.88rem;">Redis<sup>1</sup></a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 0.88rem;">嵌入式<sup>1</sup></a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 0.88rem;">操作系统<sup>1</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.88rem;">生活<sup>2</sup></a><a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" style="font-size: 0.88rem;">算法设计与分析<sup>1</sup></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 0.88rem;">设计模式<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="1899174842" server="tencent" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://i.y.qq.com/n2/m/share/details/taoge.html?id=9390991677&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("12/5/2024 01:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Tian he feng 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("12/5/2024 01:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.cbd.int/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
