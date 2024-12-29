@@ -60,7 +60,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-12-29 21:59:14',
+  postUpdate: '2024-12-29 23:44:42',
   postMainColor: '',
 }</script><noscript><style type="text/css">
   #nav {
@@ -248,7 +248,7 @@ PV操作
 1、某博物馆，任何时刻最多可容纳500名参观者进入，当售票厅中少于500名参观者时，则厅外的参观者可立即进入，否则需在外面等待。若把一个参观者看作一个进程，请回答下列问题。
 （1）用PV操作管理这些并发进程时，应怎样定义信号量，写出信号量的初值以及信号量各种取值的含义。
 （2）根据所定义的信号量，利用PV操作写出能正确并发执行的进程。
-123456789101112131415（1）定义一信号量S，初始值为 500 为互斥信号量。    意义：         S&gt;0     S 的值表示可继续进入博物馆的人数         S=0     表示售票厅中已有500名参观者         S&lt;0     |S| 的值为等待进入参观者的人数        （2）COBEGIN         PROCESS Pi(i=1 ， 2 ， ……)           begin            P(S); ...</div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2024/12/21/MATLAB/')"><div class="recent-post-info no-cover"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><div class="article-categories-original">复习</div><a class="unvisited-post" href="/2024/12/21/MATLAB/" title="MATLAB">未读</a></div><a class="article-title" href="/2024/12/21/MATLAB/" title="MATLAB">MATLAB</a></div><div class="article-meta-wrap"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days" style="font-size: 15px; display:none"></i><span class="article-meta-label">发表于</span><time datetime="2024-12-21T11:37:49.000Z" title="发表于 2024-12-21 19:37:49" time="2024-12-21 19:37:49">2024-12-21</time><time class="time_hidden" datetime="2024-12-29T13:20:16.380Z" title="更新于 2024-12-29 21:20:16" time="2024-12-29 21:20:16">2024-12-29</time></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/MATLAB/" event.cancelbubble onclick="window.event.cancelBubble=true;"><span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>MATLAB</span></a></span></div><div class="content">MATLAB系统环境操作
+123456789101112131415（1）定义一信号量S，初始值为 500 为互斥信号量。    意义：         S&gt;0     S 的值表示可继续进入博物馆的人数         S=0     表示售票厅中已有500名参观者         S&lt;0     |S| 的值为等待进入参观者的人数        （2）COBEGIN         PROCESS Pi(i=1 ， 2 ， ……)           begin            P(S); ...</div></div></div><div class="recent-post-item" onclick="pjax.loadUrl('/2024/12/21/MATLAB/')"><div class="recent-post-info no-cover"><div class="recent-post-info-top"><div class="recent-post-info-top-tips"><div class="article-categories-original">复习</div><a class="unvisited-post" href="/2024/12/21/MATLAB/" title="MATLAB">未读</a></div><a class="article-title" href="/2024/12/21/MATLAB/" title="MATLAB">MATLAB</a></div><div class="article-meta-wrap"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days" style="font-size: 15px; display:none"></i><span class="article-meta-label">发表于</span><time datetime="2024-12-21T11:37:49.000Z" title="发表于 2024-12-21 19:37:49" time="2024-12-21 19:37:49">2024-12-21</time><time class="time_hidden" datetime="2024-12-29T15:44:23.215Z" title="更新于 2024-12-29 23:44:23" time="2024-12-29 23:44:23">2024-12-29</time></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/MATLAB/" event.cancelbubble onclick="window.event.cancelBubble=true;"><span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>MATLAB</span></a></span></div><div class="content">MATLAB系统环境操作
 12345x = 0:pi/10:2*pi;%冒号表达式可以产生一个行向量，一般格式是：e1:e2:e3其中e1是初始值，e2为步长，e3为终止值y = sin(x);plot(x,y) %绘图函数，画出x与y的关系图
 这行代码定义了一个向量x。
 使用了 MATLAB 的冒号运算符 :，它生成一个从 0 到 2*pi 的数值序列。这里，pi/10 是步长，表示从 0 到 2*pi 之间的数值间隔为 pi/10。
